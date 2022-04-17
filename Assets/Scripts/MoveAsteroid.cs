@@ -32,15 +32,17 @@ public class MoveAsteroid : MonoBehaviour
 
         dir.Normalize();
 
-        speed = Random.Range(1, 20) / 1000f;
-        
+        speed = Random.Range(1, 10);
+
         dir *= speed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(dir, Space.World);
+        Vector2 tempDir = dir * Time.deltaTime;
+
+        transform.Translate(tempDir, Space.World);
 
         float x = transform.position.x;
         float y = transform.position.y;
