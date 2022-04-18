@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class MoveAsteroid : MonoBehaviour
 {
-    const float MAX_SCREEN_X = 14;
-    const float MAX_SCREEN_Y = 5;
-    const float MARGIN_X = MAX_SCREEN_X + MARGIN;
-    const float MARGIN_Y = MAX_SCREEN_Y + MARGIN;
-    const float MARGIN = 1.5f;
+    const float MARGIN = 1.0f;
+
+    float max_screen_x;
+    float max_screen_y;
+    float margin_x;
+    float margin_y;
 
     float speed;
 
@@ -19,9 +20,19 @@ public class MoveAsteroid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        float height = Camera.main.orthographicSize * 2.0f;
+        float width = height * Camera.main.aspect;
+
+        max_screen_x = width / 2;
+        max_screen_y = height / 2;
+
+        margin_x = max_screen_x + MARGIN;
+        margin_y = max_screen_y + MARGIN;
+
+
         Random.InitState(System.DateTime.Now.Millisecond);
 
-        transform.position = new Vector2(Random.Range(-MAX_SCREEN_X, MAX_SCREEN_X), Random.Range(-MAX_SCREEN_Y, MAX_SCREEN_Y));
+        transform.position = new Vector2(Random.Range(-max_screen_x, max_screen_x), Random.Range(-max_screen_y, max_screen_y));
 
         dir = new Vector2(1.0f, 0.0f);
 
@@ -47,8 +58,8 @@ public class MoveAsteroid : MonoBehaviour
         float x = transform.position.x;
         float y = transform.position.y;
 
-        x = x < -MARGIN_X || x > MARGIN_X ? -x : x;       
-        y = y < -MARGIN_Y || y > MARGIN_Y ? -y : y;
+        x = x < -margin_x || x > margin_x ? -x : x;
+        y = y < -margin_y || y > margin_y ? -y : y;
 
         transform.position = new Vector2(x, y);       
     }
