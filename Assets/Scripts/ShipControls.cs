@@ -41,6 +41,8 @@ public class ShipControls : MonoBehaviour
         if(Input.GetKey(KeyCode.Space))
             rb.AddForce(transform.up * speed);
 
+ 
+            
         float h = Input.GetAxis("Horizontal");
 
         float rot = rotationSpeed * Time.deltaTime * h;
