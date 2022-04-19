@@ -14,6 +14,8 @@ public class ShipControls : MonoBehaviour
     float speed = 5f;
     float rotationSpeed = 200f;
 
+    Rigidbody2D rb;
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,18 +31,23 @@ public class ShipControls : MonoBehaviour
 
         margin_x = max_screen_x + MARGIN;
         margin_y = max_screen_y + MARGIN;
+    
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKey(KeyCode.Space))
+            rb.AddForce(transform.up * speed);
+
         float h = Input.GetAxis("Horizontal");
 
         float rot = rotationSpeed * Time.deltaTime * h;
 
         transform.Rotate(new Vector3(0.0f, 0.0f, 1.0f), -rot);
 
-        transform.Translate(0.0f, speed * Time.deltaTime, 0.0f);
+        // transform.Translate(0.0f, speed * Time.deltaTime, 0.0f);
 
         float x = transform.position.x;
         float y = transform.position.y;

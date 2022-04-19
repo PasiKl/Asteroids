@@ -46,6 +46,9 @@ public class MoveAsteroid : MonoBehaviour
         speed = Random.Range(1, 10);
 
         dir *= speed;
+        
+        if(Random.Range(0, 2) == 0)
+            Destroy(transform.Find("Satellite").gameObject);
     }
 
     // Update is called once per frame
@@ -62,5 +65,12 @@ public class MoveAsteroid : MonoBehaviour
         y = y < -margin_y || y > margin_y ? -y : y;
 
         transform.position = new Vector2(x, y);       
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) 
+    {
+        if(other.gameObject.tag == "Ast")
+            dir *= 0.0f;
     }
 }
