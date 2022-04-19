@@ -14,5 +14,14 @@ public class RotateAsteroid : MonoBehaviour
     void Update()
     {
         transform.Rotate(new Vector3(0.0f, 0.0f, 1.0f), -0.1f);
+
+        Transform child = transform.Find("Satellite");
+
+        if(child != null)
+        {
+            child.transform.Rotate(Vector3.forward, 0.2f);
+
+            child.transform.RotateAround(transform.position, Vector3.forward, 0.3f);
+        }    
     }
 }
