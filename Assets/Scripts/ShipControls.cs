@@ -11,7 +11,8 @@ public class ShipControls : MonoBehaviour
     float margin_x;
     float margin_y;
 
-    float speed = 5f;
+    float force = 5f;
+    float speed = 10f;
     float rotationSpeed = 200f;
 
     Rigidbody2D rb;
@@ -35,13 +36,23 @@ public class ShipControls : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void FixedUpdate() 
+    {
+        if(Input.GetKey(KeyCode.Space))
+        {
+            rb.AddForce(transform.up * force);
+            
+            if(rb.velocity.magnitude > speed)
+                rb.velocity = rb.velocity.normalized * speed;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.Space))
-            rb.AddForce(transform.up * speed);
 
- 
+        if(Input.GetButton("Fire1"))
+            Debug.Log("fire");
             
         float h = Input.GetAxis("Horizontal");
 
