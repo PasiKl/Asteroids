@@ -72,5 +72,9 @@ public class MoveAsteroid : MonoBehaviour
     {
         if(other.gameObject.tag == "Ast")
             dir *= 0.0f;
+
+        Debug.Log(other.gameObject.name);
+        if(other.gameObject.name == "Bullet")
+            Destroy(this.gameObject);
     }
 }
