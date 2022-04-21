@@ -14,7 +14,9 @@ public class ShipControls : MonoBehaviour
     float force = 5f;
     float speed = 10f;
     float rotationSpeed = 200f;
-
+    const float FIRING_SPEED = 0.1f;
+    float fs;
+    [SerializeField] GameObject bullet;
     Rigidbody2D rb;
 
 
@@ -34,6 +36,8 @@ public class ShipControls : MonoBehaviour
         margin_y = max_screen_y + MARGIN;
     
         rb = GetComponent<Rigidbody2D>();
+
+        fs = FIRING_SPEED;
     }
 
     private void FixedUpdate() 
@@ -50,10 +54,15 @@ public class ShipControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        fs -= Time.deltaTime;
 
-        if(Input.GetButton("Fire1"))
-            Debug.Log("fire");
-            
+        if(Input.GetButton("Fire1") && fs < 0f)
+        {
+            Instantiate(bullet, transform.position + transform.up * 0.5f, transform.rotation);
+        
+            fs = FIRING_SPEED;
+        }
+
         float h = Input.GetAxis("Horizontal");
 
         float rot = rotationSpeed * Time.deltaTime * h;
