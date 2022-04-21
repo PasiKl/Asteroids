@@ -17,6 +17,10 @@ public class MoveAsteroid : MonoBehaviour
     Vector2 dir;
 
 
+    private void Awake() 
+    {
+        speed = Random.Range(1, 6);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +47,6 @@ public class MoveAsteroid : MonoBehaviour
 
         dir.Normalize();
 
-        speed = Random.Range(1, 10);
 
         dir *= speed;
         
@@ -74,13 +77,14 @@ public class MoveAsteroid : MonoBehaviour
 
         if(other.gameObject.tag == "Bull")
         {
-            Transform child = transform.Find("Sat");
-
             transform.DetachChildren();
 
             Destroy(this.gameObject);
-
-
         }   
+    }
+
+    public float getSpeed()
+    {
+        return speed;
     }
 }
