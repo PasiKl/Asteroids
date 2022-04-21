@@ -29,9 +29,6 @@ public class ShipControls : MonoBehaviour
         max_screen_x = width / 2;
         max_screen_y = height / 2;
 
-        //Debug.Log(max_screen_x);
-        //Debug.Log(max_screen_y);
-
         margin_x = max_screen_x + MARGIN;
         margin_y = max_screen_y + MARGIN;
     
@@ -68,8 +65,6 @@ public class ShipControls : MonoBehaviour
         float rot = rotationSpeed * Time.deltaTime * h;
 
         transform.Rotate(new Vector3(0.0f, 0.0f, 1.0f), -rot);
-
-        // transform.Translate(0.0f, speed * Time.deltaTime, 0.0f);
 
         float x = transform.position.x;
         float y = transform.position.y;

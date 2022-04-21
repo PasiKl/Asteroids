@@ -15,13 +15,14 @@ public class RotateAsteroid : MonoBehaviour
     {
         transform.Rotate(new Vector3(0.0f, 0.0f, 1.0f), -0.1f);
 
-        Transform child = transform.Find("Satellite");
+        // Transform child = transform.Find("Satellite");
 
-        if(child != null)
-        {
-            child.transform.Rotate(Vector3.forward, 0.2f);
+        // if(child != null)
+        // {
+        //     child.GetComponent<RotateSatellite>()
+        //     // child.transform.Rotate(Vector3.forward, 0.2f);
 
-            child.transform.RotateAround(transform.position, Vector3.forward, 0.3f);
-        }    
+        //     // child.transform.RotateAround(transform.position, Vector3.forward, 0.3f);
+        // }    
     }
 }

@@ -170,6 +170,8 @@ GameObject:
   - component: {fileID: 3229820798363037904}
   - component: {fileID: 3229820798363037907}
   - component: {fileID: 214805478617023869}
+  - component: {fileID: 8886412693918651489}
+  - component: {fileID: 3353008621965333289}
   m_Layer: 0
   m_Name: Satellite
   m_TagString: Sat
@@ -278,5 +280,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ca8d4649bfc47f4c85149c8d75550a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &8886412693918651489
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3229820798363037934}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &3353008621965333289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3229820798363037934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1773152e79d207c43a2e822a544abe20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ast
   - Sat
+  - Bull
   layers:
   - Default
   - TransparentFX

@@ -65,7 +65,6 @@ public class MoveAsteroid : MonoBehaviour
         y = y < -margin_y || y > margin_y ? -y : y;
 
         transform.position = new Vector2(x, y);       
-
     }
 
     private void OnCollisionEnter2D(Collision2D other) 
@@ -73,8 +72,15 @@ public class MoveAsteroid : MonoBehaviour
         if(other.gameObject.tag == "Ast")
             dir *= 0.0f;
 
-        Debug.Log(other.gameObject.name);
-        if(other.gameObject.name == "Bullet")
+        if(other.gameObject.tag == "Bull")
+        {
+            Transform child = transform.Find("Sat");
+
+            transform.DetachChildren();
+
             Destroy(this.gameObject);
+
+
+        }   
     }
 }
