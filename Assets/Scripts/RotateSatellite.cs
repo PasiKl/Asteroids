@@ -12,7 +12,7 @@ public class RotateSatellite : MonoBehaviour
     float margin_y;
 
     float speed;
-    bool set = false;
+    bool par = false;
 
     Vector2 dir;
     Vector3 parentPos;
@@ -31,8 +31,6 @@ public class RotateSatellite : MonoBehaviour
         margin_y = max_screen_y + MARGIN;
 
         speed = transform.parent.GetComponent<MoveAsteroid>().getSpeed();
-    
-        Debug.Log(speed);
     }
 
     // Update is called once per frame
@@ -40,7 +38,6 @@ public class RotateSatellite : MonoBehaviour
     {
         transform.Rotate(Vector3.forward, 0.2f);
 
-        
         if(transform.parent != null)
         {
             parentPos = transform.parent.position;
@@ -49,19 +46,17 @@ public class RotateSatellite : MonoBehaviour
         }
         else
         {
-            if(!set)
+            if(!par)
             {
-                // dir = transform.position - parentPos;
                 dir = parentPos - transform.position;
-                // dir *= Mathf.Sin(Mathf.Deg2Rad * 90);
+
                 dir = new Vector2(dir.y, -dir.x);
+
                 dir.Normalize();
 
                 dir *= speed;
 
-                // Debug.Log(dir.x);
-
-                set = true;
+                par = true;
             }
 
             transform.Translate(dir * Time.deltaTime, Space.World);
@@ -73,8 +68,6 @@ public class RotateSatellite : MonoBehaviour
             y = y < -margin_y || y > margin_y ? -y : y;
 
             transform.position = new Vector2(x, y);       
-        
-            // prev = transform.position;
         }
     }
 }

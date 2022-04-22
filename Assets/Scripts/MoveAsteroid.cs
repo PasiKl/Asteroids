@@ -19,8 +19,11 @@ public class MoveAsteroid : MonoBehaviour
 
     private void Awake() 
     {
+        Random.InitState(System.DateTime.Now.Millisecond);
+
         speed = Random.Range(1, 6);
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,9 +37,8 @@ public class MoveAsteroid : MonoBehaviour
         margin_y = max_screen_y + MARGIN;
 
 
-        Random.InitState(System.DateTime.Now.Millisecond);
 
-        transform.position = new Vector2(Random.Range(-max_screen_x, max_screen_x), Random.Range(-max_screen_y, max_screen_y));
+        // transform.position = new Vector2(Random.Range(-max_screen_x, max_screen_x), Random.Range(-max_screen_y, max_screen_y));
 
         dir = new Vector2(1.0f, 0.0f);
 
@@ -46,7 +48,6 @@ public class MoveAsteroid : MonoBehaviour
                           dir.x * Mathf.Sin(angle) + dir.y * Mathf.Cos(angle));
 
         dir.Normalize();
-
 
         dir *= speed;
         
