@@ -53,7 +53,7 @@ public class MoveAsteroid : MonoBehaviour
         
         if(Random.Range(0, 2) == 0)
             Destroy(transform.Find("Satellite").gameObject);
-    }
+     }
 
     // Update is called once per frame
     void Update()
