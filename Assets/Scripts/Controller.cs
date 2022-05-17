@@ -12,7 +12,7 @@ public class Controller : MonoBehaviour
 
     private void Awake() 
     {
-        Random.InitState(System.DateTime.Now.Millisecond);
+        // Random.InitState(System.DateTime.Now.Millisecond);
     }
 
     // Start is called before the first frame update
@@ -21,8 +21,8 @@ public class Controller : MonoBehaviour
         float height = Camera.main.orthographicSize * 2.0f;
         float width = height * Camera.main.aspect;
 
-        max_screen_x = width / 2;
-        max_screen_y = height / 2;
+        max_screen_x = width / 2.0f;
+        max_screen_y = height / 2.0f;
 
         int n = Random.Range(2, 5);
 

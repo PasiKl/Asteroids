@@ -19,9 +19,13 @@ public class MoveAsteroid : MonoBehaviour
 
     private void Awake() 
     {
-        Random.InitState(System.DateTime.Now.Millisecond);
+        // Random.InitState(System.DateTime.Now.Millisecond);
 
-        speed = Random.Range(1, 6);
+        speed = Random.Range(1.0f, 4.0f);
+
+        Debug.Log(speed);
+        
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(0.0f, 0.0f, 1.0f);
     }
 
     // Start is called before the first frame update
@@ -30,19 +34,17 @@ public class MoveAsteroid : MonoBehaviour
         float height = Camera.main.orthographicSize * 2.0f;
         float width = height * Camera.main.aspect;
 
-        max_screen_x = width / 2;
-        max_screen_y = height / 2;
+        max_screen_x = width / 2.0f;
+        max_screen_y = height / 2.0f;
 
         margin_x = max_screen_x + MARGIN;
         margin_y = max_screen_y + MARGIN;
-
-
 
         // transform.position = new Vector2(Random.Range(-max_screen_x, max_screen_x), Random.Range(-max_screen_y, max_screen_y));
 
         dir = new Vector2(1.0f, 0.0f);
 
-        float angle = Mathf.Deg2Rad * Random.Range(0, 359);
+        float angle = Mathf.Deg2Rad * Random.Range(0.0f, 359.0f);
 
         dir = new Vector2(dir.x * Mathf.Cos(angle) - dir.y * Mathf.Sin(angle),
                           dir.x * Mathf.Sin(angle) + dir.y * Mathf.Cos(angle));
