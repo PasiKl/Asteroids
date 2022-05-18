@@ -7,6 +7,7 @@ TagManager:
   - Ast
   - Sat
   - Bull
+  - Trail
   layers:
   - Default
   - TransparentFX
@@ -14,8 +15,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Trail
+  - Ship
   - 
   - 
   - 
@@ -43,4 +44,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: ShipLayer
+    uniqueID: 581015477
     locked: 0

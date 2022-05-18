@@ -16,7 +16,12 @@ public class ShipControls : MonoBehaviour
     float rotationSpeed = 200f;
     const float FIRING_SPEED = 0.1f;
     float fs;
+
     [SerializeField] GameObject bullet;
+    [SerializeField] GameObject trail;
+
+    Color currentColor;
+
     Rigidbody2D rb;
 
 
@@ -53,11 +58,28 @@ public class ShipControls : MonoBehaviour
     {
         fs -= Time.deltaTime;
 
+        if(Input.GetButton("Fire2"))
+        {
+
+        }
+
         if(Input.GetButton("Fire1") && fs < 0f)
         {
-            Instantiate(bullet, transform.position + transform.up * 0.5f, transform.rotation);
+            var b = Instantiate(bullet, transform.position + transform.up * 0.5f, transform.rotation);
         
+            // Physics2D.IgnoreCollision(b.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
+
             fs = FIRING_SPEED;
+        }
+
+        if(rb.velocity.magnitude > 0.0f)
+        {
+            var v = new Vector3(rb.velocity.x, rb.velocity.y, transform.position.z);
+
+            v.Normalize();
+
+            Instantiate(trail, transform.position + -v * 0.7f, transform.rotation);
+            
         }
 
         float h = Input.GetAxis("Horizontal");
