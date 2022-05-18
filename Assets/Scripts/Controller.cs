@@ -47,6 +47,11 @@ public class Controller : MonoBehaviour
                 pos = new Vector2(pos.x * 1.5f, pos.y * 1.5f);
 
             var a = Instantiate(ast, pos, Quaternion.identity);
+
+            if(Random.Range(0.0f, 1.0f) < 0.5f)
+                a.GetComponent<MoveAsteroid>().SetColors(primaryCol);
+            else
+                a.GetComponent<MoveAsteroid>().SetColors(secondaryCol);
         }
     }
 

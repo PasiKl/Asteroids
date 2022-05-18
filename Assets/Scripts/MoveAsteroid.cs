@@ -14,6 +14,8 @@ public class MoveAsteroid : MonoBehaviour
 
     float speed;
 
+    Color col;
+
     Vector2 dir;
 
 
@@ -89,5 +91,14 @@ public class MoveAsteroid : MonoBehaviour
     public float getSpeed()
     {
         return speed;
+    }
+
+    public void SetColors(Color c)
+    {
+        GetComponent<SpriteRenderer>().color = c;
+
+        var s = transform.Find("Satellite");
+        
+        s.GetComponent<SpriteRenderer>().color = c;
     }
 }
