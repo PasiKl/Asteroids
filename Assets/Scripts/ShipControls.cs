@@ -40,10 +40,6 @@ public class ShipControls : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         fs = FIRING_SPEED;
-
-        primaryCol = new Color(1.0f, 0.0f, 0.0f);
-        secondaryCol = new Color(0.0f, 1.0f, 0.0f);
-        currentCol = primaryCol;
     }
 
     private void FixedUpdate() 
@@ -105,5 +101,13 @@ public class ShipControls : MonoBehaviour
         y = y < -margin_y || y > margin_y ? -y : y;
 
         transform.position = new Vector2(x, y);
+    }
+
+    public void SetColors(Color pri, Color sec)
+    {
+        primaryCol = pri;
+        secondaryCol = sec;
+
+        currentCol = primaryCol;
     }
 }
