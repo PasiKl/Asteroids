@@ -26,7 +26,7 @@ public class Controller : MonoBehaviour
 
         int n = Random.Range(2, 5);
 
-        Debug.Log(n);
+        // Debug.Log(n);
 
         for(int i = 0; i < n; i++)
         {

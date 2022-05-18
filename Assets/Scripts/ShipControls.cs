@@ -89,7 +89,7 @@ public class ShipControls : MonoBehaviour
             
             t.GetComponent<SpriteRenderer>().color = currentCol;
 
-            // Physics2D.IgnoreCollision(b.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
+            Physics2D.IgnoreCollision(t.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
 
         float h = Input.GetAxis("Horizontal");

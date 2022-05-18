@@ -23,7 +23,7 @@ public class MoveAsteroid : MonoBehaviour
 
         speed = Random.Range(1.0f, 4.0f);
 
-        Debug.Log(speed);
+        // Debug.Log(speed);
         
         gameObject.GetComponent<SpriteRenderer>().color = new Color(0.0f, 0.0f, 1.0f);
     }
