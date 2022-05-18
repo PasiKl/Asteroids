@@ -20,7 +20,7 @@ public class ShipControls : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject trail;
 
-    Color currentColor;
+    Color currentCol, primaryCol, secondaryCol;
 
     Rigidbody2D rb;
 
@@ -40,6 +40,10 @@ public class ShipControls : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         fs = FIRING_SPEED;
+
+        primaryCol = new Color(1.0f, 0.0f, 0.0f);
+        secondaryCol = new Color(0.0f, 1.0f, 0.0f);
+        currentCol = primaryCol;
     }
 
     private void FixedUpdate() 
@@ -58,16 +62,19 @@ public class ShipControls : MonoBehaviour
     {
         fs -= Time.deltaTime;
 
-        if(Input.GetButton("Fire2"))
+        if(Input.GetButtonDown("Fire2"))
         {
-
+            if(currentCol == primaryCol)
+                currentCol = secondaryCol;
+            else
+                currentCol = primaryCol;
         }
 
         if(Input.GetButton("Fire1") && fs < 0f)
         {
             var b = Instantiate(bullet, transform.position + transform.up * 0.5f, transform.rotation);
         
-            // Physics2D.IgnoreCollision(b.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
+            b.GetComponent<SpriteRenderer>().color = currentCol;
 
             fs = FIRING_SPEED;
         }
@@ -78,8 +85,11 @@ public class ShipControls : MonoBehaviour
 
             v.Normalize();
 
-            Instantiate(trail, transform.position + -v * 0.7f, transform.rotation);
+            var t = Instantiate(trail, transform.position + -v * 0.7f, transform.rotation);
             
+            t.GetComponent<SpriteRenderer>().color = currentCol;
+
+            // Physics2D.IgnoreCollision(b.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
         }
 
         float h = Input.GetAxis("Horizontal");
