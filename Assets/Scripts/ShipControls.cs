@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class ShipControls : MonoBehaviour
 {
+    const float FIRING_SPEED = 0.1f;
     const float MARGIN = 0.5f;
+    const float NOT_DESTROYED_TIME = 3.0f;
 
     float max_screen_x;
     float max_screen_y;
     float margin_x;
     float margin_y;
 
+    float fs;
     float force = 5f;
     float speed = 10f;
     float rotationSpeed = 200f;
-    const float FIRING_SPEED = 0.1f;
-    float fs;
+
+
+    bool destroyEnabled;
 
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject trail;
@@ -40,6 +44,13 @@ public class ShipControls : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         fs = FIRING_SPEED;
+    
+        // destroyEnabled = false;
+        GetComponent<PolygonCollider2D>().enabled = false;
+
+        Invoke("ToggleDestroy", NOT_DESTROYED_TIME);
+
+        StartCoroutine("ChangeColor");
     }
 
     private void FixedUpdate() 
@@ -103,11 +114,35 @@ public class ShipControls : MonoBehaviour
         transform.position = new Vector2(x, y);
     }
 
+    IEnumerator ChangeColor()
+    {
+        if(!destroyEnabled)
+        {
+            GetComponent<SpriteRenderer>().color = new Color(0.0f, 0.0f, 1.0f);
+
+            for(float t = 0.0f, i = 0.0f; i < NOT_DESTROYED_TIME; i += Time.deltaTime)
+            {
+                t = (1.0f / NOT_DESTROYED_TIME) * i;
+
+                GetComponent<SpriteRenderer>().color = new Color(t, t, 1.0f);
+
+                yield return null;
+            }
+        }
+    }
+
     public void SetColors(Color pri, Color sec)
     {
         primaryCol = pri;
         secondaryCol = sec;
 
         currentCol = primaryCol;
+    }
+
+    public void ToggleDestroy()
+    {
+        destroyEnabled = !destroyEnabled;
+
+        GetComponent<PolygonCollider2D>().enabled = destroyEnabled;
     }
 }

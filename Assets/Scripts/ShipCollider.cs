@@ -9,12 +9,12 @@ public class ShipCollider : MonoBehaviour
 
     private void Start() 
     {
-        // Physics2D.IgnoreCollision(trail.transform.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
     }
 
     void OnCollisionEnter2D(Collision2D other) 
     {
-        if(other.gameObject.tag != "Trail")
-            Destroy(gameObject);
+        
+            if(other.gameObject.tag != "Trail")
+                Destroy(gameObject);
     }
 }
