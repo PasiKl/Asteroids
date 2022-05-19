@@ -1,9 +1,9 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveAsteroid : MonoBehaviour
+
+public class MovePiece : MonoBehaviour
 {
     const float MARGIN = 1.0f;
 
@@ -14,27 +14,14 @@ public class MoveAsteroid : MonoBehaviour
 
     float speed;
 
-//    Color col;
-
     Vector2 dir;
 
-    [SerializeField] GameObject ast2, astPiece;
-
-
-    private void Awake() 
-    {
-        // Random.InitState(System.DateTime.Now.Millisecond);
-
-        speed = Random.Range(1.0f, 4.0f);
-
-        // Debug.Log(speed);
-        
-        // gameObject.GetComponent<SpriteRenderer>().color = new Color(0.0f, 0.0f, 1.0f);
-    }
 
     // Start is called before the first frame update
     void Start()
     {
+        speed = Random.Range(1.0f, 4.0f);
+        
         float height = Camera.main.orthographicSize * 2.0f;
         float width = height * Camera.main.aspect;
 
@@ -56,14 +43,13 @@ public class MoveAsteroid : MonoBehaviour
         dir.Normalize();
 
         dir *= speed;
-        
-        if(Random.Range(0, 2) == 0)
-            Destroy(transform.Find("Satellite").gameObject);
-     }
+    }
 
     // Update is called once per frame
     void Update()
     {
+        transform.Rotate(Vector3.forward, 0.2f);
+
         Vector2 tempDir = dir * Time.deltaTime;
 
         transform.Translate(tempDir, Space.World);
@@ -79,18 +65,7 @@ public class MoveAsteroid : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
-        if(other.gameObject.tag == "Ast")
-        {
-//            dir *= 0.0f;
-
-        }
-
-        if(other.gameObject.tag == "Bull")
-        {
-            transform.DetachChildren();
-
-            Destroy(this.gameObject);
-        }   
+        Destroy(gameObject);        
     }
 
     public float getSpeed()
@@ -101,10 +76,5 @@ public class MoveAsteroid : MonoBehaviour
     public void SetColors(Color c)
     {
         GetComponent<SpriteRenderer>().color = c;
-
-        var s = transform.Find("Satellite");
-
-        if(s != null)        
-            s.GetComponent<SpriteRenderer>().color = c;
     }
 }

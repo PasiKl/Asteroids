@@ -1,9 +1,8 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveAsteroid : MonoBehaviour
+public class MoveAsteroid2 : MonoBehaviour
 {
     const float MARGIN = 1.0f;
 
@@ -17,8 +16,6 @@ public class MoveAsteroid : MonoBehaviour
 //    Color col;
 
     Vector2 dir;
-
-    [SerializeField] GameObject ast2, astPiece;
 
 
     private void Awake() 
@@ -57,8 +54,8 @@ public class MoveAsteroid : MonoBehaviour
 
         dir *= speed;
         
-        if(Random.Range(0, 2) == 0)
-            Destroy(transform.Find("Satellite").gameObject);
+        // if(Random.Range(0, 2) == 0)
+        //     Destroy(transform.Find("Satellite").gameObject);
      }
 
     // Update is called once per frame
@@ -79,18 +76,15 @@ public class MoveAsteroid : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
-        if(other.gameObject.tag == "Ast")
-        {
-//            dir *= 0.0f;
+        // if(other.gameObject.tag == "Ast")
+        //     dir *= 0.0f;
 
-        }
+        // if(other.gameObject.tag == "Bull")
+        // {
+        //    transform.DetachChildren();
 
-        if(other.gameObject.tag == "Bull")
-        {
-            transform.DetachChildren();
-
-            Destroy(this.gameObject);
-        }   
+        //     Destroy(this.gameObject);
+        // }   
     }
 
     public float getSpeed()
@@ -102,9 +96,10 @@ public class MoveAsteroid : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().color = c;
 
-        var s = transform.Find("Satellite");
+        // var s = transform.Find("Satellite");
 
-        if(s != null)        
-            s.GetComponent<SpriteRenderer>().color = c;
+        // if(s != null)        
+        //     s.GetComponent<SpriteRenderer>().color = c;
     }
 }
+

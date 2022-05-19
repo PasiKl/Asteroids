@@ -45,7 +45,6 @@ public class ShipControls : MonoBehaviour
 
         fs = FIRING_SPEED;
     
-        // destroyEnabled = false;
         GetComponent<PolygonCollider2D>().enabled = false;
 
         Invoke("ToggleDestroy", NOT_DESTROYED_TIME);
@@ -86,7 +85,7 @@ public class ShipControls : MonoBehaviour
             fs = FIRING_SPEED;
         }
 
-        if(rb.velocity.magnitude > 0.0f)
+        if(rb.velocity.magnitude > 0.0f && destroyEnabled)
         {
             var v = new Vector3(rb.velocity.x, rb.velocity.y, transform.position.z);
 
