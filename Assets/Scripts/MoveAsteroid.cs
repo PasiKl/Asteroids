@@ -14,7 +14,7 @@ public class MoveAsteroid : MonoBehaviour
 
     float speed;
 
-//    Color col;
+    Color col;
 
     Vector2 dir;
 
@@ -85,16 +85,21 @@ public class MoveAsteroid : MonoBehaviour
             case "Ast2":
                 CreateAsteroids();
 
+                transform.DetachChildren();
+
                 Destroy(gameObject);
 
                 break;
 
             case "Bull":
-                CreateAsteroids();
+                if(other.gameObject.GetComponent<SpriteRenderer>().color == col)
+                {
+                    CreateAsteroids();
 
-                transform.DetachChildren();
+                    transform.DetachChildren();
 
-                Destroy(gameObject);
+                    Destroy(gameObject);
+                }
 
                 break;
         }
@@ -125,6 +130,8 @@ public class MoveAsteroid : MonoBehaviour
 
     public void SetColors(Color c)
     {
+        col = c;
+
         GetComponent<SpriteRenderer>().color = c;
 
         var s = transform.Find("Satellite");

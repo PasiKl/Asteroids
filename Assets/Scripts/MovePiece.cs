@@ -14,6 +14,8 @@ public class MovePiece : MonoBehaviour
 
     float speed;
 
+    Color col;
+
     Vector2 dir;
 
 
@@ -66,7 +68,8 @@ public class MovePiece : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) 
     {
         if(other.gameObject.tag == "Bull")
-            Destroy(gameObject);        
+            if(other.gameObject.GetComponent<SpriteRenderer>().color == col)
+                Destroy(gameObject);        
     }
 
     public float getSpeed()
@@ -76,6 +79,8 @@ public class MovePiece : MonoBehaviour
 
     public void SetColors(Color c)
     {
+        col = c;
+
         GetComponent<SpriteRenderer>().color = c;
     }
 }

@@ -37,8 +37,6 @@ public class Controller : MonoBehaviour
 
         int n = Random.Range(2, 5);
 
-        // Debug.Log(n);
-
         for(int i = 0; i < n; i++)
         {
             Vector2 pos = new Vector2(Random.Range(-max_screen_x, max_screen_x), Random.Range(-max_screen_y, max_screen_y));

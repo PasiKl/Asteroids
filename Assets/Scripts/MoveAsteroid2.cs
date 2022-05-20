@@ -13,7 +13,7 @@ public class MoveAsteroid2 : MonoBehaviour
 
     float speed;
 
-//    Color col;
+    Color col;
 
     Vector2 dir;
 
@@ -80,9 +80,12 @@ public class MoveAsteroid2 : MonoBehaviour
                 break;
 
             case "Bull":
-                CreateAsteroids();
+                if(other.gameObject.GetComponent<SpriteRenderer>().color == col)
+                {
+                    CreateAsteroids();
 
-                Destroy(gameObject);
+                    Destroy(gameObject);
+                }
 
                 break;
         }
@@ -109,6 +112,8 @@ public class MoveAsteroid2 : MonoBehaviour
 
     public void SetColors(Color c)
     {
+        col = c;
+        
         GetComponent<SpriteRenderer>().color = c;
     }
 }
