@@ -9,9 +9,8 @@ public class Controller : MonoBehaviour
 
     Color primaryCol, secondaryCol;
 
-    GameObject ship;
-
     [SerializeField] GameObject ast;
+    [SerializeField] GameObject ship;
 
 
     private void Awake() 
@@ -28,14 +27,17 @@ public class Controller : MonoBehaviour
         max_screen_x = width / 2.0f;
         max_screen_y = height / 2.0f;
 
-        ship = GameObject.Find("Ship");
-
         primaryCol = new Color(1.0f, 0.0f, 0.0f);
         secondaryCol = new Color(0.0f, 1.0f, 0.0f);
 
-        ship.GetComponent<ShipControls>().SetColors(primaryCol, secondaryCol);
+        // ship = GameObject.Find("Ship");
+        // ship.GetComponent<ShipControls>().SetColors(primaryCol, secondaryCol);
+
+        CreateShip();
 
         int n = Random.Range(2, 5);
+
+        // n = 0;
 
         for(int i = 0; i < n; i++)
         {
@@ -57,5 +59,17 @@ public class Controller : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void CreateShip()
+    {
+        var s = Instantiate(ship, new Vector2(0.0f, 0.0f), Quaternion.identity);
+
+        s.GetComponent<ShipControls>().SetColors(primaryCol, secondaryCol);
+    }
+    
+    public void ShipDestroyed()
+    {
+        Invoke("CreateShip", 3);
     }
 }
