@@ -37,7 +37,7 @@ public class Controller : MonoBehaviour
 
         int n = Random.Range(2, 5);
 
-        // n = 0;
+        n = 0;
 
         for(int i = 0; i < n; i++)
         {
