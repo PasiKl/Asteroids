@@ -6,10 +6,11 @@ public class BulletCollider : MonoBehaviour
 {
     float speed = 10f;
 
+
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(this.gameObject, 10);
+        Destroy(gameObject, 10);
     }
 
     // Update is called once per frame
@@ -20,6 +21,6 @@ public class BulletCollider : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }

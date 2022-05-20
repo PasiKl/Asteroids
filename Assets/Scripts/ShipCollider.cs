@@ -13,8 +13,7 @@ public class ShipCollider : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other) 
     {
-        
-            if(other.gameObject.tag != "Trail")
-                Destroy(gameObject);
+        if(other.gameObject.tag != "Trail")
+            Destroy(gameObject);
     }
 }
