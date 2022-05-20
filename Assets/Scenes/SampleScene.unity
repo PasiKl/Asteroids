@@ -850,6 +850,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5208441418493171421, guid: d1a2f4b00c9b7634ea6ef1af42acc8b9, type: 3}
+      propertyPath: m_TagString
+      value: Ast2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1a2f4b00c9b7634ea6ef1af42acc8b9, type: 3}
 --- !u!1001 &7310277410635762783
@@ -910,6 +914,10 @@ PrefabInstance:
     - target: {fileID: 7310277410398939785, guid: 2873368ed9f196144a7254ef1e041902, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7310277410398939785, guid: 2873368ed9f196144a7254ef1e041902, type: 3}
+      propertyPath: m_TagString
+      value: Piece
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2873368ed9f196144a7254ef1e041902, type: 3}

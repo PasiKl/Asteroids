@@ -8,6 +8,8 @@ TagManager:
   - Sat
   - Bull
   - Trail
+  - Ast2
+  - Piece
   layers:
   - Default
   - TransparentFX

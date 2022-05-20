@@ -79,18 +79,43 @@ public class MoveAsteroid : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
-        if(other.gameObject.tag == "Ast")
+        switch(other.gameObject.tag)
         {
-//            dir *= 0.0f;
+            case "Ast":
+            case "Ast2":
+                CreateAsteroids();
 
+                Destroy(gameObject);
+
+                break;
+
+            case "Bull":
+                CreateAsteroids();
+
+                transform.DetachChildren();
+
+                Destroy(gameObject);
+
+                break;
         }
+    }
 
-        if(other.gameObject.tag == "Bull")
+    private void CreateAsteroids()
+    {
+        var pos = new Vector2(transform.position.x, transform.position.y);
+
+        var a1 = Instantiate(ast2, pos, Quaternion.identity);
+
+        a1.GetComponent<MoveAsteroid2>().SetColors(GetComponent<SpriteRenderer>().color);
+
+        int n = Random.Range(0, 3);
+
+        for(int i = 0; i < n; i++)
         {
-            transform.DetachChildren();
-
-            Destroy(this.gameObject);
-        }   
+            var p = Instantiate(astPiece, new Vector2(pos.x + Random.value, pos.y + Random.value), Quaternion.identity);
+            
+            p.GetComponent<MovePiece>().SetColors(GetComponent<SpriteRenderer>().color);
+        }
     }
 
     public float getSpeed()

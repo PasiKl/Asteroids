@@ -17,16 +17,12 @@ public class MoveAsteroid2 : MonoBehaviour
 
     Vector2 dir;
 
+    [SerializeField] GameObject astPiece;
+
 
     private void Awake() 
     {
-        // Random.InitState(System.DateTime.Now.Millisecond);
-
         speed = Random.Range(1.0f, 4.0f);
-
-        // Debug.Log(speed);
-        
-        // gameObject.GetComponent<SpriteRenderer>().color = new Color(0.0f, 0.0f, 1.0f);
     }
 
     // Start is called before the first frame update
@@ -53,9 +49,6 @@ public class MoveAsteroid2 : MonoBehaviour
         dir.Normalize();
 
         dir *= speed;
-        
-        // if(Random.Range(0, 2) == 0)
-        //     Destroy(transform.Find("Satellite").gameObject);
      }
 
     // Update is called once per frame
@@ -76,15 +69,37 @@ public class MoveAsteroid2 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
-        // if(other.gameObject.tag == "Ast")
-        //     dir *= 0.0f;
+        switch(other.gameObject.tag)
+        {
+            case "Ast":
+            case "Ast2":
+                CreateAsteroids();
 
-        // if(other.gameObject.tag == "Bull")
-        // {
-        //    transform.DetachChildren();
+                Destroy(gameObject);
 
-        //     Destroy(this.gameObject);
-        // }   
+                break;
+
+            case "Bull":
+                CreateAsteroids();
+
+                Destroy(gameObject);
+
+                break;
+        }
+    }
+
+    private void CreateAsteroids()
+    {
+        var pos = new Vector2(transform.position.x, transform.position.y);
+
+        int n = Random.Range(2, 4);
+
+        for(int i = 0; i < n; i++)
+        {
+            var p = Instantiate(astPiece, new Vector2(pos.x + Random.value, pos.y + Random.value), Quaternion.identity);
+            
+            p.GetComponent<MovePiece>().SetColors(GetComponent<SpriteRenderer>().color);
+        }
     }
 
     public float getSpeed()
@@ -95,11 +110,6 @@ public class MoveAsteroid2 : MonoBehaviour
     public void SetColors(Color c)
     {
         GetComponent<SpriteRenderer>().color = c;
-
-        // var s = transform.Find("Satellite");
-
-        // if(s != null)        
-        //     s.GetComponent<SpriteRenderer>().color = c;
     }
 }
 

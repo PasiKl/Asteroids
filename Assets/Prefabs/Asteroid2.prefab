@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5208441418493171415}
   m_Layer: 0
   m_Name: Asteroid2
-  m_TagString: Ast
+  m_TagString: Ast2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,3 +157,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0be20ef7e495346a7a68d83b22ee8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  astPiece: {fileID: 7310277410398939785, guid: 2873368ed9f196144a7254ef1e041902, type: 3}
