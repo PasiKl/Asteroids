@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Controller : MonoBehaviour
 {
     float max_screen_x;
     float max_screen_y;
 
-    int lives;
-
+    int lives, score;
     Color primaryCol, secondaryCol;
 
     [SerializeField] GameObject ast;
     [SerializeField] GameObject ship;
+    [SerializeField] Text scoreText;
 
 
     private void Awake() 
@@ -33,6 +34,7 @@ public class Controller : MonoBehaviour
         secondaryCol = new Color(0.0f, 1.0f, 0.0f);
 
         lives = 3;
+        score = 0;
 
         // ship = GameObject.Find("Ship");
         // ship.GetComponent<ShipControls>().SetColors(primaryCol, secondaryCol);
@@ -79,5 +81,13 @@ public class Controller : MonoBehaviour
         lives--;
 
         Invoke("CreateShip", 3);
+    }
+
+    public void UpdateScore(int s)
+    {
+        score += s;
+        Debug.Log(score);
+
+        scoreText.text = $"{score}";
     }
 }
