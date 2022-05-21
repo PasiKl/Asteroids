@@ -7,6 +7,8 @@ public class Controller : MonoBehaviour
     float max_screen_x;
     float max_screen_y;
 
+    int lives;
+
     Color primaryCol, secondaryCol;
 
     [SerializeField] GameObject ast;
@@ -30,6 +32,8 @@ public class Controller : MonoBehaviour
         primaryCol = new Color(1.0f, 0.0f, 0.0f);
         secondaryCol = new Color(0.0f, 1.0f, 0.0f);
 
+        lives = 3;
+
         // ship = GameObject.Find("Ship");
         // ship.GetComponent<ShipControls>().SetColors(primaryCol, secondaryCol);
 
@@ -37,7 +41,7 @@ public class Controller : MonoBehaviour
 
         int n = Random.Range(2, 5);
 
-        n = 0;
+//        n = 0;
 
         for(int i = 0; i < n; i++)
         {
@@ -70,6 +74,10 @@ public class Controller : MonoBehaviour
     
     public void ShipDestroyed()
     {
+        GameObject.Find($"Life{lives}").SetActive(false);
+
+        lives--;
+
         Invoke("CreateShip", 3);
     }
 }
