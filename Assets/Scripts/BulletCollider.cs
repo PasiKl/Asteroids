@@ -26,26 +26,31 @@ public class BulletCollider : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
-        int s = 0;
-
-        switch (other.gameObject.tag)
+        if (GetComponent<SpriteRenderer>().color == other.gameObject.GetComponent<SpriteRenderer>().color)
         {
-            case "Ast":
-                s = 10;
+            int s = 0;
 
-                break;
-            case "Ast2":
-                s = 20;
+            switch (other.gameObject.tag)
+            {
+                case "Ast":
+                    s = 10;
 
-                break;
-            case "Piece":
-            case "Sat":
-                s = 30;
+                    break;
 
-                break;
+                case "Ast2":
+                    s = 20;
+
+                    break;
+
+                case "Piece":
+                case "Sat":
+                    s = 30;
+
+                    break;
+            }
+
+            controllerScript.UpdateScore(s);
         }
-
-        controllerScript.UpdateScore(s);
 
         Destroy(gameObject);
     }
