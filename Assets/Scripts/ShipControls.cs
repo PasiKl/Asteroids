@@ -15,7 +15,7 @@ public class ShipControls : MonoBehaviour
 
     float fs;
     float force = 5f;
-    float speed = 10f;
+    float speed = 2f; //10f;
     float rotationSpeed = 200f;
 
 
@@ -54,7 +54,7 @@ public class ShipControls : MonoBehaviour
 
     private void FixedUpdate() 
     {
-        if(Input.GetKey(KeyCode.Space))
+//        if(Input.GetKey(KeyCode.Space))
         {
             rb.AddForce(transform.up * force);
             

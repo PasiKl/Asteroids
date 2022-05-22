@@ -11,8 +11,10 @@ public class RotateSatellite : MonoBehaviour
     float margin_x;
     float margin_y;
 
-    float speed;
     bool par = false;
+    bool noParent;
+
+    float speed;
 
     Vector2 dir;
     Vector3 parentPos;
@@ -30,12 +32,26 @@ public class RotateSatellite : MonoBehaviour
         margin_x = max_screen_x + MARGIN;
         margin_y = max_screen_y + MARGIN;
 
-        speed = transform.parent.GetComponent<MoveAsteroid>().getSpeed();
+        noParent = false;
+
+        var p = transform.parent;
+
+        if(p)
+            speed = transform.parent.GetComponent<MoveAsteroid>().getSpeed();
+        else
+            noParent = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(noParent)
+        {
+            Destroy(gameObject);
+
+            return;
+        }
+
         transform.Rotate(Vector3.forward, 0.2f);
 
         if(transform.parent != null)

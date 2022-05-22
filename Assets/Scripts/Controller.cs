@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 public class Controller : MonoBehaviour
 {
     float max_screen_x;
@@ -13,7 +14,8 @@ public class Controller : MonoBehaviour
     Color primaryCol, secondaryCol;
 
     GameObject GOText;
-
+    GameObject shipInst;
+    
     [SerializeField] GameObject ast;
     [SerializeField] GameObject ship;
     [SerializeField] Text scoreText;
@@ -40,11 +42,28 @@ public class Controller : MonoBehaviour
         score = 0;
 
         CreateShip();
+        CreateAsteroids();
 
         GOText = GameObject.Find("GameOverText");
 
         GOText.SetActive(false);
+ 
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Destroy(shipInst);
+
+            CreateShip();
+            CreateAsteroids();
+        }
+    }
+
+    public void CreateAsteroids()
+    {
         int n = Random.Range(2, 5);
 
 //        n = 0;
@@ -65,17 +84,11 @@ public class Controller : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CreateShip()
     {
-        
-    }
-
-    private void CreateShip()
-    {
-        var s = Instantiate(ship, new Vector2(0.0f, 0.0f), Quaternion.identity);
-
-        s.GetComponent<ShipControls>().SetColors(primaryCol, secondaryCol);
+        shipInst = Instantiate(ship, new Vector2(0.0f, 0.0f), Quaternion.identity);
+ 
+        shipInst.GetComponent<ShipControls>().SetColors(primaryCol, secondaryCol);
     }
     
     public void ShipDestroyed()
