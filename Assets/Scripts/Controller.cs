@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Controller : MonoBehaviour
@@ -10,6 +11,8 @@ public class Controller : MonoBehaviour
 
     int lives, score;
     Color primaryCol, secondaryCol;
+
+    GameObject GOText;
 
     [SerializeField] GameObject ast;
     [SerializeField] GameObject ship;
@@ -36,10 +39,11 @@ public class Controller : MonoBehaviour
         lives = 3;
         score = 0;
 
-        // ship = GameObject.Find("Ship");
-        // ship.GetComponent<ShipControls>().SetColors(primaryCol, secondaryCol);
-
         CreateShip();
+
+        GOText = GameObject.Find("GameOverText");
+
+        GOText.SetActive(false);
 
         int n = Random.Range(2, 5);
 
@@ -80,7 +84,19 @@ public class Controller : MonoBehaviour
 
         lives--;
 
-        Invoke("CreateShip", 3);
+        if (lives == 0)
+        {
+            GOText.SetActive(true);
+
+            Invoke("ShowStartScreen", 3);
+        }
+        else
+            Invoke("CreateShip", 3);
+    }
+
+    private void ShowStartScreen()
+    {
+        SceneManager.LoadScene("Start");
     }
 
     public void UpdateScore(int s)
