@@ -23,7 +23,6 @@ public class Controller : MonoBehaviour
 
     private void Awake() 
     {
-        // Random.InitState(System.DateTime.Now.Millisecond);
     }
 
     // Start is called before the first frame update
@@ -53,7 +52,7 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("Fire3"))
         {
             Destroy(shipInst);
 
